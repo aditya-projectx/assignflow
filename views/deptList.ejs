@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Departments</title>
+ <style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #0f172a;
+    padding: 30px;
+    color: #e5e7eb;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #f9fafb;
+  }
+
+  /* Controls */
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 12px;
+  }
+
+  input,
+  select {
+    padding: 8px 10px;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    width: 250px;
+    background-color: #020617;
+    color: #e5e7eb;
+  }
+
+  input::placeholder {
+    color: #9ca3af;
+  }
+
+  input:focus,
+  select:focus {
+    outline: none;
+    border-color: #3b82f6;
+  }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #020617;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 14px 16px;
+    border-bottom: 1px solid #334155;
+  }
+
+  th {
+    background-color: #020617;
+    font-weight: 600;
+    color: #f9fafb;
+  }
+
+  td {
+    color: #e5e7eb;
+  }
+
+  tr:hover {
+    background-color: #1e293b;
+  }
+
+  /* Buttons */
+  .edit-btn {
+    background-color: #3b82f6;
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .edit-btn:hover {
+    background-color: #2563eb;
+  }
+
+  .delete-btn {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-weight: 500;
+    margin-left: 10px;
+  }
+
+  .delete-btn:hover {
+    text-decoration: underline;
+  }
+
+  /* Alert */
+  .alert {
+    padding: 10px 14px;
+    width: fit-content;
+    background: rgba(239, 68, 68, 0.15);
+    border-left: 4px solid #ef4444;
+    color: #fecaca;
+    border-radius: 6px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .alert button {
+    background: none;
+    color: #ef4444;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  /* Add button alignment fix */
+  button[onclick*="create"] {
+    display: block;
+    margin: 16px auto 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    .controls {
+      flex-direction: column;
+    }
+
+    input,
+    select {
+      width: 100%;
+    }
+  }
+</style>
+
+</head>
+<body>
+  <%- include('partials/header') -%>
+  <% if (typeof msg !== 'undefined') { %>
+  <div class="alert"><%= msg %><button style="background-color: #ffdddd; color: red; border: none; margin-block-end: 2px; cursor: pointer;"  onclick="window.location.href='/admin/departments/'">X</button></div>
+  <% } %>
+  <h1>All Departments</h1>
+
+  <div class="controls">
+    <input type="text" id="searchInput" placeholder="Search by department name">
+    <select id="filterSelect">
+      <option value="All">All</option>
+      <option value="Engineering">Engineering</option>
+      <option value="Science">Science</option>
+      <option value="Research">Research</option>
+    </select>
+  </div>
+
+  <table id="departmentsTable">
+    <thead>
+      <tr>
+        <th>Department Name</th>
+        <th>Type</th>
+        <th>Number of Users</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% departments.forEach(dept => { %>
+        <tr>
+          <td><%= dept.name %></td>
+          <td><%= dept.type %></td>
+          <td><%= (dept.noUser == '{}' )? 0 : dept.noUser %></td>
+          <td>
+            
+              <button class="edit-btn" 
+              onclick="window.location.href='/admin/departments/<%= dept._id %>/edit'">Edit</button>
+            
+              <button class="delete-btn"
+              onclick="confirm('Are you sure?') && (window.location.href='/admin/departments/<%= dept._id %>/delete')">Delete</button>
+
+            
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <button onclick="window.location.href='/admin/departments/create'" class="edit-btn"
+  style="margin-left: 40%; margin-top:10px">Add more Departments</button>
+</body>
+</html>

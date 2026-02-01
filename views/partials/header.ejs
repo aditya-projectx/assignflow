@@ -1,0 +1,108 @@
+<style>
+  body {
+    padding-top: 90px; /* content below fixed header */
+    background: #0f172a;
+    font-family: Arial, sans-serif;
+  }
+
+  .navbar-wrapper {
+    position: fixed;
+    top: 15px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .navbar {
+    width: 92%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 28px;
+
+    /* DARK GLASS EFFECT */
+    background: rgba(2, 6, 23, 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-radius: 18px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+    border: 1px solid #334155;
+  }
+
+  .nav-left {
+    font-size: 22px;
+    font-weight: bold;
+    color: #f9fafb;
+    letter-spacing: 1px;
+  }
+
+  .nav-right a {
+    margin-left: 24px;
+    color: #e5e7eb;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    position: relative;
+  }
+
+  .nav-right a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: #3b82f6;
+    transition: width 0.3s ease;
+  }
+
+  .nav-right a:hover::after {
+    width: 100%;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .navbar {
+      width: 95%;
+      padding: 12px 20px;
+    }
+
+    .nav-right a {
+      margin-left: 14px;
+      font-size: 14px;
+    }
+
+    .nav-left {
+      font-size: 18px;
+    }
+  }
+  /* Admin Header Glow */
+.admin-header .navbar {
+  transition: box-shadow 0.35s ease, border-color 0.35s ease;
+  border: 1px solid var(--border);
+}
+
+.admin-header .navbar:hover {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 0 1px rgba(59,130,246,0.4),
+    0 0 35px rgba(59,130,246,0.55);
+}
+
+</style>
+
+<div class="navbar-wrapper admin-header">
+  <div class="navbar">
+    <div class="nav-left">Admin Portal</div>
+
+    <div class="nav-right">
+      <a href="/admin/dash">Dashboard</a>
+      <a href="/admin/departments">Departments</a>
+      <a href="/admin/users">Users</a>
+    </div>
+  </div>
+</div>
+

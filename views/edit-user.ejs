@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Form</title>
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #0f172a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #e5e7eb;
+    padding: 0 10px;
+  }
+
+  form {
+    background-color: #020617;
+    padding: 24px 26px;
+    border-radius: 14px;
+    width: 340px;
+    border: 1px solid #334155;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.7);
+  }
+
+  h2 {
+    text-align: center;
+    color: #f9fafb;
+    margin-bottom: 22px;
+    font-weight: 600;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 14px;
+    color: #e5e7eb;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  input,
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #020617;
+    color: #e5e7eb;
+  }
+
+  input::placeholder {
+    color: #9ca3af;
+  }
+
+  input:focus,
+  select:focus {
+    outline: none;
+    border-color: #3b82f6;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 6px;
+  }
+
+  button:hover {
+    background-color: #2563eb;
+  }
+</style>
+
+</head>
+<body>
+    <span style="font-weight: bold; color: #003366;"><%= data.role%></span>
+  <form method="post" >
+    <h2>Edit <%= data.name%></h2>
+
+    <label for="name">Name:
+      <input type="text" name="name" required value=<%= data.name%> >
+    </label>
+
+    <label for="email">Email:
+      <input type="email" name="email" required value=<%= data.email%> >
+    </label>
+
+    <label for="phone">Phone:
+      <input type="number" name="phone" required value=<%= data.phone%>  >
+    </label>
+
+    <label for="department">Dept:
+    <select name="department" >
+      <%depts.forEach(d=>{%>
+        <option value="<%= d.name %>" <%= d.name === data.department ?'selected' :'' %> ><%= d.name%></option>
+      <%})%>
+    </select>
+    </label>
+    <label for="password">Password:
+      <input type="password" id="pwd" name="password" required
+                onclick="this.type = this.type === 'password' ? 'text' : 'password'">
+    </label>
+
+    <button type="submit">Submit</button>
+  </form>
+  <script>
+    const passInput = document.getElementById('pass');
+    passInput.addEventListener('click', function() {
+      if (passInput.type === 'password') {
+        passInput.type = 'text';
+      } else {
+        passInput.type = 'password';
+      }
+    });
+  </script>
+</body>
+</html>

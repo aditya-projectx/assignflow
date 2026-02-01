@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Assignment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #fafafa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        form {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #0f766e;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        textarea,
+        select,
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        input[type="file"] {
+            padding: 5px;
+        }
+
+        p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #0f766e;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <%- include('partials/stu-header') %>
+</header>
+<div class="container">
+    <form
+      action="/student/assignments/upload"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+
+  <label>Title</label>
+  <input type="text" name="title" required />
+
+  <label>Description</label>
+  <textarea name="description"></textarea>
+
+  <label>Category</label>
+  <select name="category" required>
+    <option value="Assignment">Assignment</option>
+    <option value="Thesis">Thesis</option>
+    <option value="Report">Report</option>
+  </select>
+
+  <label>Upload PDF</label>
+  <input
+    type="file"
+    name="assignmentFile"
+    accept="application/pdf"
+    required
+  />
+
+  <p>Only PDF | Max size: 10MB</p>
+
+  <button type="submit">Upload Assignment</button>
+</form>
+
+</body>
+</html>

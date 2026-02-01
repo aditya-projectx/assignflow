@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment Dashboard</title>
+    <style>
+  :root {
+    --bg: #0f172a;
+    --panel: #020617;
+    --panel-soft: #020617cc;
+    --border: #334155;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+    --accent: #3b82f6;
+    --accent-soft: rgba(59,130,246,0.15);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .layout {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 230px;
+    background: var(--panel);
+    padding: 22px;
+    border-right: 1px solid var(--border);
+  }
+
+  .sidebar h3 {
+    margin-bottom: 18px;
+    font-size: 1rem;
+    color: #f9fafb;
+  }
+
+  .sidebar ul {
+    list-style: none;
+  }
+
+  .sidebar li {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    border-radius: 8px;
+    color: var(--muted);
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .sidebar li.active,
+  .sidebar li:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  /* Content */
+  .content {
+    flex: 1;
+    padding: 32px;
+  }
+
+  .content h1 {
+    margin-bottom: 24px;
+    font-size: 1.4rem;
+    color: #f9fafb;
+  }
+
+  /* Stats */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .card {
+    padding: 20px;
+    border-radius: 14px;
+    background: var(--panel-soft);
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  }
+
+  .card p {
+    font-size: .9rem;
+    color: var(--muted);
+  }
+
+  .card h2 {
+    margin-top: 6px;
+    font-size: 1.6rem;
+    color: #f9fafb;
+  }
+
+  /* Status accents */
+  .draft { border-left: 4px solid #3b82f6; }
+  .submitted { border-left: 4px solid #22c55e; }
+  .approved { border-left: 4px solid #84cc16; }
+  .rejected { border-left: 4px solid #ef4444; }
+
+  /* Recent Section */
+  .recent {
+    background: var(--panel);
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+
+  .recent-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+
+  .recent-header h3 {
+    color: #f9fafb;
+    font-size: 1.1rem;
+  }
+
+  .upload-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s ease;
+  }
+
+  .upload-btn:hover {
+    background: #2563eb;
+  }
+
+  /* List */
+  .list {
+    list-style: none;
+  }
+
+  .list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: .95rem;
+  }
+
+  /* Badges */
+  .badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .badge.submitted { background: #22c55e; }
+  .badge.approved { background: #84cc16; }
+  .badge.rejected { background: #ef4444; }
+  .badge.draft { background: #3b82f6; }
+
+  .view-all {
+    display: inline-block;
+    margin-top: 14px;
+    text-decoration: none;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: .9rem;
+  }
+
+  .view-all:hover {
+    text-decoration: underline;
+  }
+</style>
+
+</head>
+<body>
+<header>
+    <%- include('partials/stu-header') %>
+</header>
+<div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h3>Navigation</h3>
+        <ul>
+            <li class="active">Dashboard</li>
+            <li>All Assignments</li>
+            <li>Profile</li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+        <h1>Assignment Dashboard</h1>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="card draft">
+                <p>Draft</p>
+                <h2><%= stats.draft %></h2>
+            </div>
+            <div class="card submitted">
+                <p>Submitted</p>
+                <h2><%= stats.submitted %></h2>
+            </div>
+            <div class="card approved">
+                <p>Approved</p>
+                <h2><%= stats.approved %></h2>
+            </div>
+            <div class="card rejected">
+                <p>Rejected</p>
+                <h2><%= stats.rejected %></h2>
+            </div>
+        </div>
+
+        <!-- Recent Submissions -->
+        <div class="recent">
+            <div class="recent-header">
+                <h3>Recent Submissions</h3>
+                <button class="upload-btn" onclick="window.location.href='/student/assignments/upload'">Upload New Assignment</button>
+            </div>
+
+            <ul class="list">
+                <% assignments.forEach(a => { %>
+                    <li>
+                        <span><%= a.title %></span>
+                        <span class="badge <%= a.status.toLowerCase() %>">
+                            <%= a.status %>
+                        </span>
+                    </li>
+                <% }) %>
+            </ul>
+
+            <a href="#" class="view-all">View All Assignments →</a>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>

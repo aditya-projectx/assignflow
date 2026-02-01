@@ -1,0 +1,99 @@
+<style>
+  body {
+    padding-top: 100px; /* space for floating header */
+    background: #0f172a; /* dark page bg */
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    color: #e5e7eb;
+  }
+
+  .navbar-wrapper {
+    position: fixed;
+    top: 16px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .navbar {
+    width: 92%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 28px;
+
+    /* DARK GLASS */
+    background: rgba(2, 6, 23, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-radius: 18px;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+
+    /* subtle depth */
+    box-shadow:
+      0 10px 40px rgba(0,0,0,0.6);
+    
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* Outer glow on hover only */
+  .navbar:hover {
+    border-color: #3b82f6;
+    box-shadow:
+      0 0 0 1px rgba(59,130,246,0.4),
+      0 0 28px rgba(59,130,246,0.35);
+  }
+
+  .nav-left {
+    font-size: 20px;
+    font-weight: 600;
+    color: #f9fafb;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-right a {
+    margin-left: 24px;
+    color: #cbd5f5;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .nav-right a:hover {
+    color: #3b82f6;
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .navbar {
+      width: 95%;
+      padding: 12px 20px;
+    }
+
+    .nav-left {
+      font-size: 17px;
+    }
+
+    .nav-right a {
+      margin-left: 14px;
+      font-size: 14px;
+    }
+  }
+</style>
+
+
+<div class="navbar-wrapper">
+    <div class="navbar">
+        <div class="nav-left">Student Portal</div>
+
+        <div class="nav-right">
+            <!-- <a href="/admin/dash">Dashboard</a>
+            <a href="/admin/departments">Departments</a> -->
+            <a href="/student/logout">logout</a>
+        </div>
+    </div>
+</div>

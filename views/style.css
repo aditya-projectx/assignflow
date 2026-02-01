@@ -1,0 +1,165 @@
+/* ================================
+   GLOBAL DARK THEME OVERRIDES
+   Drop-in, safe, and flexible
+================================ */
+
+/* Root colors (easy to tweak later) */
+:root {
+  --bg-main: #0f172a;        /* page background */
+  --bg-card: #111827;        /* cards / panels */
+  --bg-soft: #1e293b;        /* inputs, tables */
+  --border-color: #334155;
+
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --text-heading: #f9fafb;
+
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --danger: #ef4444;
+}
+
+/* ===== Base ===== */
+html, body {
+  background-color: var(--bg-main) !important;
+  color: var(--text-main) !important;
+}
+
+/* ===== Headings ===== */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-heading) !important;
+}
+
+/* ===== Paragraphs & text ===== */
+p, span, label, li {
+  color: var(--text-main);
+}
+
+/* Muted text */
+small, .text-muted {
+  color: var(--text-muted) !important;
+}
+
+/* ===== Links ===== */
+a {
+  color: var(--primary);
+}
+a:hover {
+  color: var(--primary-hover);
+}
+
+/* ===== Containers / Cards ===== */
+div, section, article, main, aside {
+  background-color: transparent;
+}
+
+.card, .box, .container, .panel {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* ===== Forms ===== */
+input,
+textarea,
+select {
+  background-color: var(--bg-soft) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* ===== Buttons ===== */
+button,
+.btn {
+  background-color: var(--bg-soft);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+}
+
+button:hover,
+.btn:hover {
+  background-color: #1f2933;
+}
+
+/* Primary button */
+.btn-primary {
+  background-color: var(--primary) !important;
+  color: #fff !important;
+  border-color: var(--primary) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover) !important;
+}
+
+/* Danger button */
+.btn-danger {
+  background-color: var(--danger) !important;
+  color: #fff !important;
+}
+
+/* ===== Tables ===== */
+table {
+  background-color: var(--bg-card);
+  color: var(--text-main);
+}
+
+th {
+  background-color: #020617;
+  color: var(--text-heading);
+}
+
+td {
+  border-color: var(--border-color);
+}
+
+tr:nth-child(even) {
+  background-color: #020617;
+}
+
+/* ===== Navbar / Header / Footer ===== */
+nav, header, footer {
+  background-color: #020617 !important;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* ===== Modals ===== */
+.modal, .popup {
+  background-color: var(--bg-card) !important;
+  color: var(--text-main);
+}
+
+/* ===== Scrollbar (Chrome only) ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
+}
+
+/* ===== Images ===== */
+img {
+  filter: brightness(0.95);
+}
+
+/* ===== Utility ===== */
+hr {
+  border-color: var(--border-color);
+}
