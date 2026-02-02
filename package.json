@@ -1,0 +1,20 @@
+{
+  "name": "assignflow",
+  "version": "1.0.0",
+  "description": "A role-based Student Assignment Approval System with four major roles:\r - Student – submit assignments\r - Professor – review and approve/reject assignments\r - HOD – oversee departmental approvals\r - Admin – manage users, roles, and system settings",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aditya-projectx/assignflow.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aditya-projectx/assignflow/issues"
+  },
+  "homepage": "https://github.com/aditya-projectx/assignflow#readme"
+}

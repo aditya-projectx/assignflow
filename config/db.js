@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-
-let db = mongoose.connect('mongodb+srv://aditya:aditya@cluster0.cjrinwk.mongodb.net/')
+require('dotenv').config();
+let db = mongoose.connect(process.env.MONGO_URI)
 .then((val)=>{
     console.log("db Connected")
 })
