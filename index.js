@@ -18,9 +18,10 @@ const hodRoutes = require('./routes/routes.hod')
 const users = require('./models/model.user')
 
 app.set('view engine','ejs')
+app.set('views',__dirname+'/views')
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
-app.use(express.static('uploads')); // For uploaded files
+app.use('/uploads',express.static('uploads')); // For uploaded files
 app.use(express.static('views'));   // For CSS files like style.css
 
 app.use('/admin',autho,allowAdmin,adminRoutes)
