@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 const ejs = require('ejs')
 const cookieParser = require('cookie-parser')
 const bcrypt = require('bcrypt')
-
+require('dotenv').config(); // Load environment variables
 
 
 
@@ -20,6 +20,8 @@ const users = require('./models/model.user')
 app.set('view engine','ejs')
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
+app.use(express.static('uploads')); // For uploaded files
+app.use(express.static('views'));   // For CSS files like style.css
 
 app.use('/admin',autho,allowAdmin,adminRoutes)
 app.use('/student',autho,allowStudent,studentRouters)
@@ -93,7 +95,7 @@ app.post('/login',async(req,res)=>{
 
 
 
-
-app.listen(3000,()=>{
-    console.log("http://localhost:3000/login")
+const PORT = process.env.PORT || 3000;
+app.listen(PORT,()=>{
+    console.log(`http://localhost:${PORT}/login`)
 })
